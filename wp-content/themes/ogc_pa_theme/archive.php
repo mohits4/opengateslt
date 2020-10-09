@@ -1,0 +1,1 @@
+<?php $user = wp_get_current_user(); $url = site_url(); if($user->roles[0] == ''): wp_redirect($url); else: $location = site_url().'/home'; wp_redirect( $location, 301 ); exit; endif; ?>
