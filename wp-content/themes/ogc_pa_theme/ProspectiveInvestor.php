@@ -7,7 +7,7 @@ $url = site_url();
 $userCanAccess = ['prosp_inv','subscriber','opengate-slt','fund-i','fund-ii','fund-i-ii'];
 
 
-if(in_array($GLOBALS['$user'], $userCanAccess)){
+if(!is_user_logged_in() || in_array($GLOBALS['$user'], $userCanAccess)){
     wp_redirect($url); exit;
 }
 else if($GLOBALS['$user_role'] === 'participant'

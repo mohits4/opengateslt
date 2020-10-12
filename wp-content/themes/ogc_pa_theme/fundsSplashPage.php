@@ -1,15 +1,14 @@
 <?php /* Template Name: Funds Splash Page */ ?>
 <?php
 $GLOBALS['$user'] = wp_get_current_user();
-$GLOBALS['$user_role'] = $GLOBALS['$user']->roles[0];
+echo $GLOBALS['$user_role'] = implode('',$GLOBALS['$user']->roles);
 $url = site_url();
-if(in_array('fund-i-ii', $GLOBALS['$user']->roles) || $GLOBALS['$user_role'] === 'administrator' || $GLOBALS['$user_role'] === 'subscriber'):
-    $access_granted = 'true';
+if( (strrpos($GLOBALS['$user_role'],'fund-') > -1) || ($GLOBALS['$user_role'] === 'administrator') || ($GLOBALS['$user_role'] === 'subscriber')|| ($GLOBALS['$user_role'] === 'opengate-slt') ):
+    $access_granted = true;
 else:
-    $access_granted = 'false';
+    $access_granted = false;
 endif;
-
-if(!$access_granted):
+if(!is_user_logged_in() || !$access_granted):
     wp_redirect($url,307); exit;
 endif;
 ?>
